@@ -1,9 +1,20 @@
 // Import required libraries
+// Import required libraries
 import { Bot, InlineKeyboard, webhookCallback } from "https://deno.land/x/grammy@v1.20.3/mod.ts";
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 
-// Initialize bot with your token
-const bot = new Bot(Deno.env.get("7449086241:AAF1AyOQQt6Md_ilHfY0_otk4wIaHFARKDI") || "");
+// Get token from environment variables
+const BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
+
+// Validate token
+if (!BOT_TOKEN) {
+  console.error("ERROR: Telegram bot token not found in environment variables!");
+  console.error("Please set the TELEGRAM_BOT_TOKEN environment variable");
+  Deno.exit(1);
+}
+
+// Initialize bot
+const bot = new Bot(7449086241:AAF1AyOQQt6Md_ilHfY0_otk4wIaHFARKDI);
 
 // Channel information
 const REQUIRED_CHANNEL = "https://t.me/+X0fkvzDpjvlmZTE1";
