@@ -2,14 +2,14 @@
 import { Bot, InlineKeyboard, webhookCallback } from "https://deno.land/x/grammy@v1.20.3/mod.ts";
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 
-// Get token from environment variables
-const BOT_TOKEN = Deno.env.get("7449086241:AAF1AyOQQt6Md_ilHfY0_otk4wIaHFARKDI");
+// Get token from environment variables (CORRECTED)
+const BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
 
-// Validate token
+// Validate token (Deno Deploy compatible version)
 if (!BOT_TOKEN) {
   console.error("ERROR: Telegram bot token not found in environment variables!");
   console.error("Please set the TELEGRAM_BOT_TOKEN environment variable");
-  Deno.exit(1);
+  throw new Error("Missing bot token"); // Replaced Deno.exit() for Deno Deploy compatibility
 }
 
 // Initialize bot
@@ -18,6 +18,15 @@ const bot = new Bot(BOT_TOKEN);
 // Channel information
 const REQUIRED_CHANNEL = "https://t.me/+X0fkvzDpjvlmZTE1";
 const CHANNEL_USERNAME = "NetflixOfficialFree_bot";
+
+// Verify bot connection on startup
+try {
+  const botInfo = await bot.api.getMe();
+  console.log(`Bot @${botInfo.username} started successfully`);
+} catch (error) {
+  console.error("Failed to start bot. Invalid token?", error);
+  throw error;
+}
 
 // Handle /start command
 bot.command("start", async (ctx) => {
@@ -78,7 +87,7 @@ bot.callbackQuery("check_membership", async (ctx) => {
 
 // Function to send the main message
 async function sendMainMessage(ctx: any) {
-  const message = `🧧𝙉𝙤𝙩𝙞𝙘𝙚 - 𝘾𝙡𝙞𝙘𝙠 "𝙒𝙖𝙩𝙘𝙝 �𝙙𝙨" 𝙗𝙪𝙩𝙩𝙤𝙣 & 𝙘𝙡𝙤𝙨𝙚 𝙗𝙧𝙤𝙬𝙨𝙚𝙧 𝙩𝙖𝙗 𝙖𝙣𝙙 𝙘𝙡𝙞𝙘𝙠 𝙗𝙚𝙡𝙤𝙬 𝙡𝙞𝙣𝙠 𝙖𝙜𝙖𝙞𝙣 🌟
+  const message = `🧧𝙉𝙤𝙩𝙞𝙘𝙚 - 𝘾𝙡𝙞𝙘𝙠 "𝙒𝙖𝙩𝙘𝙝 𝙖𝙙𝙨" 𝙗𝙪𝙩𝙩𝙤𝙣 & 𝙘𝙡𝙤𝙨𝙚 𝙗𝙧𝙤𝙬𝙨𝙚𝙧 𝙩𝙖𝙗 𝙖𝙣𝙙 𝙘𝙡𝙞𝙘𝙠 𝙗𝙚𝙡𝙤𝙬 𝙡𝙞𝙣𝙠 𝙖𝙜𝙖𝙞𝙣 🌟
 
 🧧🧧🧧🧧🧧🧧
 ㅤㅤㅤㅤㅤ
