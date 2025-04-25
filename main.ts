@@ -1,10 +1,9 @@
 // Import required libraries
-// Import required libraries
 import { Bot, InlineKeyboard, webhookCallback } from "https://deno.land/x/grammy@v1.20.3/mod.ts";
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 
 // Get token from environment variables
-const BOT_TOKEN = Deno.env.get("TELEGRAM_BOT_TOKEN");
+const BOT_TOKEN = Deno.env.get("7449086241:AAF1AyOQQt6Md_ilHfY0_otk4wIaHFARKDI");
 
 // Validate token
 if (!BOT_TOKEN) {
@@ -14,7 +13,7 @@ if (!BOT_TOKEN) {
 }
 
 // Initialize bot
-const bot = new Bot(7449086241:AAF1AyOQQt6Md_ilHfY0_otk4wIaHFARKDI);
+const bot = new Bot(BOT_TOKEN);
 
 // Channel information
 const REQUIRED_CHANNEL = "https://t.me/+X0fkvzDpjvlmZTE1";
