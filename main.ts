@@ -3,7 +3,7 @@ import { Bot, InlineKeyboard, webhookCallback } from "https://deno.land/x/grammy
 import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
 
 // Initialize bot with your token
-const bot = new Bot(Deno.env.get("TELEGRAM_BOT_TOKEN") || "");
+const bot = new Bot(Deno.env.get("7449086241:AAF1AyOQQt6Md_ilHfY0_otk4wIaHFARKDI") || "");
 
 // Channel information
 const REQUIRED_CHANNEL = "https://t.me/+X0fkvzDpjvlmZTE1";
